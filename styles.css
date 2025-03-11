@@ -1,0 +1,146 @@
+body {
+    background-color: white;
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    font-family: inherit;
+    margin: 0; 
+    overflow: hidden; 
+}
+
+.logo{
+    width: 280px;
+    height: 50px;
+}
+
+.titulo{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+}
+.documento{
+    background-color: rgb(243, 242, 242);
+    width: 260px;
+}
+
+.documento1{
+    background-color: rgb(243, 242, 242);
+    border: none;
+    border-bottom: 1px solid black;
+    height: 20px;
+    width: 260px;
+}
+
+.documento11{
+    background-color: rgb(243, 242, 242);
+    border: none;
+    border-bottom: 1px solid black;
+    width: 260px;
+    height: 30px;
+}
+
+.centrado{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.link{
+    color: #1973b8;
+    text-decoration: none;
+}
+
+.centrado1{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.boton{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #004481;
+   width: 260px;
+   height: 30px;
+   border: none;
+   color: white;
+   border-radius: 10px;
+}
+
+.logo2{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 280px;
+    height: 200px;
+}
+
+.logo3{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+}
+
+.cuadrote{
+    background-color: #fff7d6;
+    width: 280px;
+}
+
+.documento111{
+    background-color: white;
+    color: black;
+    width: 260px;
+    height: 30px;
+    border: none;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logo4{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 280px;
+    height: 60px;
+    margin-top: 30px;
+}
+
+.documento3{
+    background-color: white;
+    color: black;
+    width: 260px;
+    height: 30px;
+    border: none;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.documento4{
+    background-color: white;
+    color: black;
+    width: 80px;
+    height: 30px;
+    border: none;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: inline-block;
+}
